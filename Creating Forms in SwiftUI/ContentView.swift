@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
     @State private var firstname: String = ""
@@ -20,12 +21,34 @@ struct ContentView: View {
     
     @State var globalScheme: ColorScheme = .light
 
+    @State var date = Date()
+    
+    @State private var avatarItem: PhotosPickerItem?
+    @State private var avatarImage: Image?
+    
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     HStack{
-                        
+                        VStack {
+                                    PhotosPicker("Select avatar", selection: $avatarItem, matching: .images)
+
+                                    avatarImage?
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 300, height: 300)
+                                }
+                                .onChange(of: avatarItem) {
+                                    Task {
+                                        if let loaded = try? await avatarItem?.loadTransferable(type: Image.self) {
+                                            avatarImage = loaded
+                                        } else {
+                                            print("Failed")
+                                        }
+                                    }
+                                }
+                            
                         Image(systemName: "person")                        .resizable()
                             .frame(width: 60, height: 60)
                         
@@ -45,6 +68,7 @@ struct ContentView: View {
                     TextField("Last name", text: $lastname)
                     Stepper("Age \(age)", value: $age, in: 0...99)
                     TextField("Email", text: $email)
+                    DatePicker("Birth", selection: $date, displayedComponents: .date)
                 }
 
                 Section("Notifications") {
@@ -54,13 +78,15 @@ struct ContentView: View {
                     }
                 }
                 
-                Section {
-                    Picker("App Theme", selection: $theme) {
+                Section("Customisation") {
+                    Picker("App Theme",
+                           selection: $theme) {
                         ForEach(themeOptions, id: \.self) { t in
                             Text(t).tag(t)
                             
                         }
-                    }.onChange(of: theme) {
+                    }.pickerStyle(.navigationLink)
+                    .onChange(of: theme) {
                         
                         switch theme {
                             case "Dark":

@@ -11,7 +11,7 @@ import SwiftUI
 struct FormApp: App {
     var body: some Scene {
         WindowGroup {
-            Pickers()
+            ContentView()
         }
     }
 }
