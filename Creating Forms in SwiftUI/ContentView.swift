@@ -25,6 +25,7 @@ struct ContentView: View {
     
     @State private var avatarItem: PhotosPickerItem?
     @State private var avatarImage: Image?
+    @State private var shouldPresentPhotoPicker: Bool = false
     
     var body: some View {
         NavigationView {
@@ -32,21 +33,36 @@ struct ContentView: View {
                 Section {
                     HStack{
                         VStack {
-                            if(avatarImage == nil) {
-                                Image(systemName: "person")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                            } else {
-                                avatarImage?
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60)
-                                    .clipped()
-                                    .cornerRadius(30)
+                                Button(action: {
+                                    shouldPresentPhotoPicker = true;
+                                }, label: {
+                                    if(avatarImage == nil) {
+                                        Image(systemName: "person").font(.system(size: 60, weight: .medium))
+                                    } else {
+                                        avatarImage
+                                    }
+                                })
+                                .tint(globalScheme == ColorScheme.light ? .black : .white)
+                                .frame(width: 80, height: 80)
+                                .clipped()
+                                .photosPicker(isPresented: $shouldPresentPhotoPicker, selection: $avatarItem)
+
                                 
-                            }
-                            
-                            PhotosPicker("Change avatar", selection: $avatarItem, matching: .images)
+//                                Image(systemName: "person")
+//                                    .resizable()
+//                                    .frame(width: 60, height: 60)
+
+//                            } else {
+//                                avatarImage?
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fill)
+//                                    .frame(width: 60, height: 60)
+//                                    .clipped()
+//                                    .cornerRadius(30)
+//                                    .photosPicker(isPresented: $shouldPresentPhotoPicker, selection: $avatarItem)
+//                            }
+                                
+
                         }
                         .onChange(of: avatarItem) {
                             Task {
