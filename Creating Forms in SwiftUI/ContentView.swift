@@ -14,13 +14,13 @@ struct ContentView: View {
     @State private var email: String = ""
     
     let themeOptions = ["System", "Dark", "Light"]
-
+    
     @State private var theme: String = "System"
-    @State private var age: Int = 18
+    @State private var maxNotifications: Int = 5
     @State private var enablePush: Bool = false
     
     @State var globalScheme: ColorScheme = .light
-
+    
     @State var date = Date()
     
     @State private var avatarItem: PhotosPickerItem?
@@ -32,31 +32,42 @@ struct ContentView: View {
                 Section {
                     HStack{
                         VStack {
-                                    PhotosPicker("Select avatar", selection: $avatarItem, matching: .images)
-
-                                    avatarImage?
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 300, height: 300)
-                                }
-                                .onChange(of: avatarItem) {
-                                    Task {
-                                        if let loaded = try? await avatarItem?.loadTransferable(type: Image.self) {
-                                            avatarImage = loaded
-                                        } else {
-                                            print("Failed")
-                                        }
-                                    }
-                                }
+                            if(avatarImage == nil) {
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                            } else {
+                                avatarImage?
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 60, height: 60)
+                                    .clipped()
+                                    .cornerRadius(30)
+                                
+                            }
                             
-                        Image(systemName: "person")                        .resizable()
-                            .frame(width: 60, height: 60)
+                            PhotosPicker("Change avatar", selection: $avatarItem, matching: .images)
+                        }
+                        .onChange(of: avatarItem) {
+                            Task {
+                                if let loaded = try? await avatarItem?.loadTransferable(type: Image.self) {
+                                    avatarImage = loaded
+                                } else {
+                                    print("Failed")
+                                }
+                            }
+                        }
+                    
                         
                         VStack {
                             Text("John Smith")
                                 .font(.title)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("Premium member").frame(maxWidth: .infinity, alignment: .leading)
+                                .frame(maxWidth: .infinity,
+                                       alignment: .leading)
+                            
+                            Text("Premium member")
+                                .frame(maxWidth: .infinity,
+                                       alignment: .leading)
                         }
                         Spacer()
                     }
@@ -66,15 +77,17 @@ struct ContentView: View {
                 Section {
                     TextField("First name", text: $firstname)
                     TextField("Last name", text: $lastname)
-                    Stepper("Age \(age)", value: $age, in: 0...99)
                     TextField("Email", text: $email)
-                    DatePicker("Birth", selection: $date, displayedComponents: .date)
+                    DatePicker("Date of Birth", selection: $date, displayedComponents: .date)
                 }
-
+                
                 Section("Notifications") {
-
                     Toggle(isOn: $enablePush) {
                         Text("Push Notifications")
+                    }
+                    
+                    if(enablePush) {
+                        Stepper("Max daily notifications: \(maxNotifications)", value: $maxNotifications, in: 0...10)
                     }
                 }
                 
@@ -86,9 +99,9 @@ struct ContentView: View {
                             
                         }
                     }.pickerStyle(.navigationLink)
-                    .onChange(of: theme) {
-                        
-                        switch theme {
+                        .onChange(of: theme) {
+                            
+                            switch theme {
                             case "Dark":
                                 globalScheme = .dark
                             case "Light":
@@ -96,14 +109,14 @@ struct ContentView: View {
                             default:
                                 globalScheme = .dark
                             }
-                    }
-
+                        }
+                    
                 }
             }
             .navigationTitle(Text("Settings"))
             .preferredColorScheme(globalScheme)
         }
-
+        
     }
 }
 
