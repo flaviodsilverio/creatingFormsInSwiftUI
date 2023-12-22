@@ -7,20 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BA218F92B0FFB2500F0C8C6 /* Pickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA218F82B0FFB2500F0C8C6 /* Pickers.swift */; };
-		1BA2EFF02B2849EC00E9AD41 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2EFEF2B2849EC00E9AD41 /* ImagePicker.swift */; };
+		1BA2F00D2B322D8D00E9AD41 /* Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2F00C2B322D8D00E9AD41 /* Forms.swift */; };
 		1BA43A632B0BEAEE00A314D8 /* FormApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA43A622B0BEAEE00A314D8 /* FormApp.swift */; };
-		1BA43A652B0BEAEE00A314D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA43A642B0BEAEE00A314D8 /* ContentView.swift */; };
 		1BA43A672B0BEAF000A314D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BA43A662B0BEAF000A314D8 /* Assets.xcassets */; };
 		1BA43A6A2B0BEAF000A314D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BA43A692B0BEAF000A314D8 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1BA218F82B0FFB2500F0C8C6 /* Pickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pickers.swift; sourceTree = "<group>"; };
-		1BA2EFEF2B2849EC00E9AD41 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1BA2F00C2B322D8D00E9AD41 /* Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forms.swift; sourceTree = "<group>"; };
 		1BA43A5F2B0BEAEE00A314D8 /* Creating Forms in SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creating Forms in SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA43A622B0BEAEE00A314D8 /* FormApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormApp.swift; sourceTree = "<group>"; };
-		1BA43A642B0BEAEE00A314D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1BA43A662B0BEAF000A314D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BA43A692B0BEAF000A314D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,9 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				1BA43A622B0BEAEE00A314D8 /* FormApp.swift */,
-				1BA218F82B0FFB2500F0C8C6 /* Pickers.swift */,
-				1BA43A642B0BEAEE00A314D8 /* ContentView.swift */,
-				1BA2EFEF2B2849EC00E9AD41 /* ImagePicker.swift */,
+				1BA2F00C2B322D8D00E9AD41 /* Forms.swift */,
 				1BA43A662B0BEAF000A314D8 /* Assets.xcassets */,
 				1BA43A682B0BEAF000A314D8 /* Preview Content */,
 			);
@@ -143,9 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA218F92B0FFB2500F0C8C6 /* Pickers.swift in Sources */,
-				1BA2EFF02B2849EC00E9AD41 /* ImagePicker.swift in Sources */,
-				1BA43A652B0BEAEE00A314D8 /* ContentView.swift in Sources */,
+				1BA2F00D2B322D8D00E9AD41 /* Forms.swift in Sources */,
 				1BA43A632B0BEAEE00A314D8 /* FormApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
